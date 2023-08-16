@@ -16,7 +16,8 @@ app.use(
 );
 
 app.use("/api/inventories", router);
-//This middleware parses incoming JSON data from requests and makes it available in req.body for easy access.
+console.log();
+//This middleware parses incing JSON data from requests and makes it available in req.body for easy access.
 app.use(express.json());
 
 // GET method route

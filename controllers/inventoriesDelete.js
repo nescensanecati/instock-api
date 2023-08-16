@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-// const knex = require("knex")(require("./knexfile"));
+const knex = require("knex")(require("../knexfile"));
 const fs = require("fs");
 
 const remove = (req, res) => {
@@ -9,13 +9,12 @@ const remove = (req, res) => {
     .del()
     .then((result) => {
       if (result === 0) {
-        return res.status(400).json({
+        return res.status(404).json({
           message: `Iventory with ID: ${req.params.id} to be deleted not found.`,
         });
       }
-
       // no content response
-      res.status(204).send();
+      res.status(204).send({ message: "successfully deleted" });
     })
     .catch(() => {
       res.status(500).json({ message: "Unable to delete the inventory" });

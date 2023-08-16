@@ -6,6 +6,7 @@ const inventoriesDelete = require("../controllers/inventoriesDelete"); // Import
 
 // DELETE route for deleting an inventory item by ID
 
-router.route("/api/inventories/:id").delete(inventoriesDelete.remove);
+router.delete("/:id", inventoriesDelete.remove);
+console.log("delete");
 
 module.exports = router;
