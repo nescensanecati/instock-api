@@ -1,5 +1,7 @@
 const express = require("express"); //create an express app, used to create a server and handle http requests
-const app = express(); //is an instance of express
+const app = express();
+const router = require("./routes/userRoutes.js");
+const knex = require("./knexfile.js"); //is an instance of express
 
 require("dotenv").config();
 const PORT = process.env.PORT;
@@ -13,6 +15,7 @@ app.use(
   })
 );
 
+app.use("/api/inventories", router);
 //This middleware parses incoming JSON data from requests and makes it available in req.body for easy access.
 app.use(express.json());
 
