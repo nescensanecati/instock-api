@@ -16,7 +16,6 @@ app.use(
 );
 
 app.use("/api/inventories", router);
-console.log();
 //This middleware parses incing JSON data from requests and makes it available in req.body for easy access.
 app.use(express.json());
 
