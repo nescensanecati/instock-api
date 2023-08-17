@@ -1,6 +1,7 @@
 const express = require("express"); //create an express app, used to create a server and handle http requests
 const app = express();
-const router = require("./routes/userRoutes.js");
+const inventoryRoute = require("./routes/inventoryRoute.js");
+const warehousesRoute = require("./routes/warehousesRoute.js");
 const knex = require("./knexfile.js"); //is an instance of express
 
 require("dotenv").config();
@@ -15,7 +16,10 @@ app.use(
   })
 );
 
-app.use("/api/inventories", router);
+app.use("/api/inventories", inventoryRoute);
+
+app.use("/api/warehouses", warehousesRoute);
+
 //This middleware parses incing JSON data from requests and makes it available in req.body for easy access.
 app.use(express.json());
 
