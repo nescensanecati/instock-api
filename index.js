@@ -16,6 +16,8 @@ app.use(
 //This middleware parses incoming JSON data from requests and makes it available in req.body for easy access.
 app.use(express.json());
 
+app.use("/api/warehouses", router);
+
 // GET method route
 app.get("/", (req, res) => {
   res.send("GET request to.. the server is running");
