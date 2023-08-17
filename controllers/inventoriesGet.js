@@ -1,7 +1,4 @@
-const express = require("express");
-const router = express.Router();
 const knex = require("knex")(require("../knexfile"));
-const fs = require("fs");
 
 const getAll = (_req, res) => {
     knex("inventories")
@@ -22,7 +19,6 @@ const getSingleItem = (req, res) => {
         .innerJoin('warehouses', 'inventories.warehouse_id', 'warehouses.id')
         .where({ 'inventories.id': req.params.id })
         .then((data) => {
-            console.log(data);
             if (data.length === 0){
                 return res 
                 .status(404)
