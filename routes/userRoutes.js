@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-const inventoriesDelete = require("../controllers/inventoriesDelete"); // Deletion controller module
+const inventoriesDelete = require("../controllers/inventoriesDelete"); // inventories DELETE controller module
 
-const inventoriesGet = require("../controllers/inventoriesGet"); // Get "all" controller module
+const inventoriesGet = require("../controllers/inventoriesGet"); // inventories GET controller module
 
-// GET "all" route for getting all inventory items
+// inventories GET route for getting all inventory items
 router.get("/", inventoriesGet.get);
 
-// DELETE route for deleting an inventory item by ID
+// inventories DELETE route for deleting an inventory item by ID
 router.delete("/:id", inventoriesDelete.remove);
 
 
