@@ -18,12 +18,12 @@ const getSingleItem = (req, res) => {
                 if (data.length === 0){
                     return res 
                     .status(404)
-                    .json({ message: `Inventory with ID: ${req.params.id} not found` });
+                    .json({ message: `Warehouse with ID: ${req.params.id} not found` });
                 }
                 res.status(200).json(data);
             })
             .catch((err) => {
-                res.status(500).json({ message: `Unable to get the inventory with ID: ${req.params.id}` });
+                res.status(500).json({ message: `Unable to get the warehouse with ID: ${req.params.id}` });
             });
         };
 
