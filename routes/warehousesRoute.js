@@ -7,6 +7,8 @@ const warehousesGet = require("../controllers/warehousesGet"); // warehouses GET
 
 const warehousesPost = require("../controllers/warehousesPost");
 
+const warehousesPut = require("../controllers/warehousesPut");
+
 // warehouses GET route for getting all warehouse items
 warehousesRoute.get(
   "/:id/inventories",
@@ -17,6 +19,9 @@ warehousesRoute.get("/:id", warehousesGet.getSingleWarehouse);
 
 // warehouses POST route for post/creating a New Warehouse
 warehousesRoute.post("/", warehousesPost.add);
+
+// warehouses PUT route to allow editing of the warehouse details
+warehousesRoute.put("/:id", warehousesPut.put);
 
 function logMessage(req, res, next) {
   next();
