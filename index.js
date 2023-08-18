@@ -16,12 +16,12 @@ app.use(
   })
 );
 
+//This middleware parses incing JSON data from requests and makes it available in req.body for easy access.
+
+app.use(express.json());
 app.use("/api/inventories", inventoryRoute);
 
 app.use("/api/warehouses", warehousesRoute);
-
-//This middleware parses incing JSON data from requests and makes it available in req.body for easy access.
-app.use(express.json());
 
 // GET method route
 app.get("/", (req, res) => {

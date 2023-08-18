@@ -1,23 +1,18 @@
 const knex = require("knex")(require("../knexfile"));
-const crypto = require("node:crypto");
 
 const post = (req, res) => {
   if (
-    !req.body.warehouse_name ||
+    !req.body.warehouse_id ||
     !req.body.item_name ||
     !req.body.description ||
     !req.body.category ||
     !req.body.status ||
     !req.body.quantity
   ) {
-    this.errorCount++;
     return res.status(400).send("Error Please fill all the fields");
-  }
-
-  // const newInventory = { ...req.body, id: crypto.random.UUID() };
-  else {
+  } else {
     knex("inventories")
-      .insert(newInventory)
+      .insert(req.body)
       .then((result) => {
         if (result.length === 0) {
           return res.status(404).json({
