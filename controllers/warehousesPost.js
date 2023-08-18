@@ -6,28 +6,16 @@ const crypto = require("crypto"); //import the built-in crypto module, to genera
 //For Phone Number and Email fields validate correct phone number and email.
 //For incorrect/incomplete data, the correct error response needs to be sent (with status code and message).
 
-//use the logMessage middleware for all routes
-router.use(logMessage);
-
-router.post("/", (req, res) => {
-  const newWarehouse = {
-    id: crypto.randomUUID(),
-    warehouse_name: "Chicago",
-    address: "3218 Guess Rd",
-    city: "Chicago",
-    country: "USA",
-    contact_name: "Jameson Schuppe",
-    contact_position: "Warehouse Manager",
-    contact_phone: "+1 (919) 797-2875",
-    contact_email: "jschuppe@instock.com",
-  };
-
-  // Respond with the warehouse that was created
-  res.status(201).json(newWarehouse);
-});
-
 const add = (req, res) => {
-  if (!req.body.contact_phone || !req.body.contact_email) {
+  console.log(req.body);
+  if (
+    !req.body.contact_position ||
+    !req.body.contact_name ||
+    !req.body.country ||
+    !req.body.city ||
+    !req.body.address ||
+    !req.body.warehouse_name
+  ) {
     return res.status(400).send("Missing properties in the request body");
   }
   if (!req.body.contact_phone || !req.body.contact_email) {
@@ -38,10 +26,10 @@ const add = (req, res) => {
       );
   }
 
-  knex("user") //check if this is the table
+  knex("warehouses")
     .insert(req.body)
     .then((result) => {
-      return knex("user").where({ id: result[0] });
+      return knex("warehouses").where({ id: result[0] });
     })
     .then((createdWarehouse) => {
       res.status(201).json(createdWarehouse);
@@ -51,10 +39,4 @@ const add = (req, res) => {
     });
 };
 
-function logMessage(req, res, next) {
-  next();
-}
-
-module.exports = { router, add }; //Export the router so that it can be used in other parts of the application
-
-router.route("/").post(userController.add);
+module.exports = { add }; //Export the router so that it can be used in other parts of the application

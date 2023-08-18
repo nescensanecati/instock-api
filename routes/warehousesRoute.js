@@ -5,6 +5,8 @@ const warehousesDelete = require("../controllers/warehousesDelete"); // warehous
 
 const warehousesGet = require("../controllers/warehousesGet"); // warehouses GET controller module
 
+const warehousesPost = require("../controllers/warehousesPost");
+
 // warehouses GET route for getting all warehouse items
 warehousesRoute.get(
   "/:id/inventories",
@@ -12,5 +14,8 @@ warehousesRoute.get(
 );
 
 warehousesRoute.get("/:id", warehousesGet.getSingleWarehouse);
+
+warehousesRoute.post("/", warehousesPost.add);
+// warehousesRoute.route("/").post(warehousesPost.add);
 
 module.exports = warehousesRoute;
