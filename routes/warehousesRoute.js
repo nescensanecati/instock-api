@@ -15,7 +15,11 @@ warehousesRoute.get(
 
 warehousesRoute.get("/:id", warehousesGet.getSingleWarehouse);
 
+// warehouses POST route for post/creating a New Warehouse
 warehousesRoute.post("/", warehousesPost.add);
-// warehousesRoute.route("/").post(warehousesPost.add);
+
+function logMessage(req, res, next) {
+  next();
+}
 
 module.exports = warehousesRoute;
