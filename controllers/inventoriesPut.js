@@ -40,7 +40,9 @@ const putSingleItem = (req, res) => {
                             .where({ id: req.params.id })
                             .update(req.body)
                             .then(() => {
-                                return knex("inventories").where({
+                                return knex
+                                .select('warehouse_id','item_name','description','category','status','quantity')
+                                .from("inventories").where({
                                     id: req.params.id,
                                 });
                             })
