@@ -24,7 +24,9 @@ const getAll = (_req, res) => {
 const getSingleWarehouse = (req, res) => {
   const warehouseId = req.params.id;
 
-  knex("warehouses")
+  knex
+    .select('id', 'warehouse_name', 'address', 'city', 'country', 'contact_name', 'contact_position', 'contact_phone', 'contact_email')
+    .from("warehouses")
     .where({ id: warehouseId })
     .then((warehouse) => {
       if (warehouse.length === 0) {
