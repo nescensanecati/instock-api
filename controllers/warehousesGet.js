@@ -1,6 +1,25 @@
 const knex = require("knex")(require("../knexfile"));
 
-const getAll = (_req, res) => {};
+const getAll = (_req, res) => {
+  knex("warehouses")
+    .select(
+      "warehouses.id",
+      "warehouses.warehouse_name",
+      "address",
+      "city",
+      "country",
+      "contact_name",
+      "contact_position",
+      "contact_phone",
+      "contact_email"
+    )
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((err) => {
+      res.status(500).json({ message: "Unable to get the warehouses" });
+    });
+};
 
 const getSingleWarehouse = (req, res) => {
   const warehouseId = req.params.id;

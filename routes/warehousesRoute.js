@@ -7,6 +7,9 @@ const warehousesGet = require("../controllers/warehousesGet"); // warehouses GET
 
 const warehousesPost = require("../controllers/warehousesPost"); // warehouses POST controller module
 
+// warehouses GET route for getting all warehouses list
+warehousesRoute.get("/", warehousesGet.getAll);
+
 // warehouses GET route for getting all warehouse items
 warehousesRoute.get(
   "/:id/inventories",
