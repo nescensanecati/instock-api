@@ -5,7 +5,7 @@ const warehousesDelete = require("../controllers/warehousesDelete"); // warehous
 
 const warehousesGet = require("../controllers/warehousesGet"); // warehouses GET controller module
 
-const warehousesPost = require("../controllers/warehousesPost");
+const warehousesPost = require("../controllers/warehousesPost"); // warehouses POST controller module
 
 // warehouses GET route for getting all warehouse items
 warehousesRoute.get(
@@ -13,10 +13,14 @@ warehousesRoute.get(
   warehousesGet.getSingleWarehouseInventory
 );
 
+// warehouses GET route for post/creating a New Warehouse
 warehousesRoute.get("/:id", warehousesGet.getSingleWarehouse);
 
 // warehouses POST route for post/creating a New Warehouse
 warehousesRoute.post("/", warehousesPost.add);
+
+// warehouses DELETE route for post/creating a New Warehouse
+warehousesRoute.delete("/:id", warehousesDelete.remove);
 
 function logMessage(req, res, next) {
   next();
