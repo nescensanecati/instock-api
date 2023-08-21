@@ -9,7 +9,7 @@ const put = (req, res) => {
     !req.body.address ||
     !req.body.warehouse_name
   ) {
-    return res.status(400).send({
+    return res.status(400).json({
       message:
         "The request was unsuccessful due to missing properties in the request body",
     });
@@ -20,7 +20,7 @@ const put = (req, res) => {
     console.log(regexTel.test(req.body.contact_phone));
 
     if (!regexTel.test(req.body.contact_phone)) {
-      return res.status(400).send({
+      return res.status(400).json({
         message:
           "Invalid phone number, please provide a valid phone for the user in the request",
       });
@@ -31,11 +31,10 @@ const put = (req, res) => {
 
       console.log(regexEmail.test(req.body.contact_email));
       if (!regexEmail.test(req.body.contact_email)) {
-        return res
-          .status(400)
-          .send(
-            "Invalid email address, please provide a valid email for the user in the request"
-          );
+        return res.status(400).json({
+          message:
+            "Invalid email address, please provide a valid email for the user in the request",
+        });
       } else {
         knex("warehouses")
           .where({ id: req.params.id })
