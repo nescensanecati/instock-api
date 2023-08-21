@@ -11,10 +11,9 @@ const putSingleItem = (req, res) => {
   ) {
     return res
       .status(400)
-      .send({
-        message:
-          "The request was unsucceful due to missing properties in the request body",
-      });
+      .send(
+        "The request was unsucceful due to missing properties in the request body"
+      );
   } else if (String(Number(req.body.quantity)) == "NaN") {
     return res
       .status(400)
