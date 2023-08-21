@@ -11,7 +11,9 @@ const add = (req, res) => {
     !req.body.address ||
     !req.body.warehouse_name
   ) {
-    return res.status(400).send("Missing properties in the request body");
+    return res
+      .status(400)
+      .send({ message: "Missing properties in the request body" });
   } else {
     //Validate correct phone number and email fields.
     let regexTel = /^\+\d{1,2}\s\(\d{3}\)\s\d{3}-\d{4}$/;
@@ -45,11 +47,10 @@ const add = (req, res) => {
           res.status(500).json({ message: "Unable to create new user" });
         });
     } else {
-      return res
-        .status(400)
-        .send(
-          "Invalid email address or phone number, please provide a valid phone and email for the user in the request"
-        );
+      return res.status(400).send({
+        message:
+          "Invalid email address or phone number, please provide a valid phone and email for the user in the request",
+      });
     }
   }
 };

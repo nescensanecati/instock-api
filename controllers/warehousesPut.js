@@ -9,25 +9,23 @@ const put = (req, res) => {
     !req.body.address ||
     !req.body.warehouse_name
   ) {
-    return res
-      .status(400)
-      .send(
-        "The request was unsuccessful due to missing properties in the request body"
-      );
+    return res.status(400).send({
+      message:
+        "The request was unsuccessful due to missing properties in the request body",
+    });
   } else {
-    //Validate correct phone number and email fields.
+    //Validate correct phone number field.
     let regexTel = /^\+\d{1,2}\s\(\d{3}\)\s\d{3}-\d{4}$/;
 
     console.log(regexTel.test(req.body.contact_phone));
 
     if (!regexTel.test(req.body.contact_phone)) {
-      return res
-        .status(400)
-        .send(
-          "Invalid phone number, please provide a valid phone and email for the user in the request"
-        );
+      return res.status(400).send({
+        message:
+          "Invalid phone number, please provide a valid phone for the user in the request",
+      });
     } else {
-      //Validate correct phone number and email fields.
+      //Validate correct email field.
 
       let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -36,7 +34,7 @@ const put = (req, res) => {
         return res
           .status(400)
           .send(
-            "Invalid email address, please provide a valid phone and email for the user in the request"
+            "Invalid email address, please provide a valid email for the user in the request"
           );
       } else {
         knex("warehouses")
