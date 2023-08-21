@@ -8,8 +8,6 @@ const putSingleItem = (req, res) => {
         !req.body.category ||
         !req.body.status ||
         !req.body.quantity) {
-        this.errorCount++;
-        console.log(errorCount);
         return res
             .status(400)
             .send("The request was unsucceful due to missing properties in the request body");
